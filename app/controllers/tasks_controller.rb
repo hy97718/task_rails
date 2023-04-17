@@ -5,32 +5,50 @@ class TasksController < ApplicationController
     end
   
 
-  def show
-  end
-
   def new
     @task =Task.new
   end
 
   def create
-    p = task_params
-    # フォームの入力がfalseの場合、keyなしのparamsが渡されるため
-    # validation前にfalseを埋め込む
-    if !p.respond_to? :is_all_day
-        p[:is_all_day] = false
-    end
-    @task= Task.new(p)
+    @task= Task.new(task_params)
     if @task.save
-      flash[:success] = "タスクを登録しました。" 
-      redirect_to tasks_url
+      flash[:notice] = "タスクを登録しました。"
+      redirect_to :tasks
     else 
-      flash.now[:failure] = "タスクの登録に失敗しました。"
-      render :new
+      flash.now[:mistake] = "タスクの登録に失敗しました。"
+      render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
+  def show
+    @task = Task.find_by(id:params[:id])
   end
+
+  def edit
+    @task = Task.find_by(id:params[:id])
+  end
+
+  def update
+    @task = Task.find_by(id:params[:id])
+
+    if @task.update(task_params)
+      flash[:success] = "タスクを編集しました。"
+      redirect_to :tasks
+    else 
+      flash.now[:failure] = "タスクの編集に失敗しました。"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  def destroy
+    @task = Task.find(params[:id])
+    if @task.destroy
+    flash[:erace] = "予定を削除しました"
+    redirect_to :tasks
+    else
+      redirect_to :tasks
+    end  
+  end
+
 
   private
   def task_params
@@ -39,7 +57,7 @@ class TasksController < ApplicationController
     :start_at,
     :end_at,
     :is_all_day,
-    :memo,
+    :memo
     )
   end
 

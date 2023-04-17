@@ -41,16 +41,34 @@
             
             <% end %>
         </td>
-        <td><%= task.updated_at.to_s(:datetime_jp) %></td>
-        <td><%= link_to("詳細","/tasks/#{task.id}") %></td>
-        <td><%= link_to("編集","/tasks/#{task.id}/edit") %></td>
-        <td></td>
+        <td>
+          <%= task.updated_at.to_s(:datetime_jp) %>
+        </td>
+        <td>
+          <%= link_to("詳細","/tasks/#{task.id}") %>
+        </td>
+        <td>
+        <%= link_to("編集","/tasks/#{task.id}/edit") %>
+        </td>
+        <td>
+        <%= button_to "削除",task_path(task.id),{ method: :delete, class: "text-primary bg-white text-decoration-underline border border-0", form: { data: { turbo_confirm: "本当に削除しますか？" } } } %>
+        </td>
       </tr>
       <%end%>
     </tbody>
   </table>
-    <div class="bg-white p-1 mt-5 d-flex">
-        <%= "予定合計#{Task.count}件"%>
-        <%= "本日の日付#{Date.today}"%>
-    </div>
+<!--フラッシュメッセージ表示view-->  
+  <div class ="text-center text-success fs-5 fw-bold" > 
+    <% if flash[:success]%>
+    <%= flash[:success]%>
+    <% elsif flash[:notice]%>
+    <%= flash[:notice] %>
+    <% elsif flash[:erace]%>
+    <%= flash[:erace] %>
+    <% end%>  
+  </div>  
+  <div class="bg-white p-1 mt-5 d-flex">
+      <%= "予定合計#{Task.count}件"%>
+      <%= "本日の日付#{Date.today}"%>
+  </div>
 </div>
