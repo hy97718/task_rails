@@ -1,0 +1,12 @@
+
+<div class="p-3 bg-light text-dark">
+  <h3 class="mt-2 mx-auto w-50">予定の編集</h3>
+  <div class ="text-center text-danger fs-5 fw-bold" > 
+    <% if flash[:failure]%>
+      <p><%= flash[:failure]%></p>
+      <% end%>  
+  </div>    
+    <%= render "shared/form" %>
+      
+
+</div>

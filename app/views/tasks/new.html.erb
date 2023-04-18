@@ -1,0 +1,11 @@
+
+<div class="p-3 bg-light text-dark">
+  <h3 class="mt-2 mx-auto w-50">予定の新規追加</h3>
+    <div class ="text-center text-danger fs-5 fw-bold" > 
+      <% if flash[:mistake]%>
+      <p><%= flash[:mistake]%></p>
+      <% end%>  
+    </div>  
+    <%= render "shared/form" %>
+  
+</div>
