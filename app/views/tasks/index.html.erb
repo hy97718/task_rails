@@ -1,20 +1,21 @@
 
 <div class="p-3 mb-2 bg-light text-dark">
-  <div class="position-relative mb-5">
-    <p class="position-absolute top-0 start-0">予定一覧</p>
-    <div class="btn btn-primary position-absolute top-0 end-0">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16"
-      color="white">
-      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-      </svg>
-      <%= link_to("新規追加","/tasks/new",class: "text-white text-decoration-none") %>
-    </div>  
-  </div>
-  <div>
-  <table class="table table-hover p-4  mb-2 bg-white text-dark">
+  
+  <div class="m-5">
+    <div class="d-flex justify-content-between mb-2">
+      <div class="fw-bold">予定一覧</div>
+      <div class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16"
+        color="white">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg>
+        <%= link_to("新規追加","/tasks/new",class: "text-white text-decoration-none") %>
+      </div>  
+    </div>
+  <table class="table table-hover p-4 bg-white text-dark">
   <tbody>
-      <tr>
+      <tr class="fw-bold">
         <td>ID</td>
         <td>タイトル</td>
         <td>開始日</td>
@@ -67,8 +68,8 @@
     <%= flash[:erace] %>
     <% end%>  
   </div>  
-  <div class="bg-white p-1 mt-5 d-flex">
-      <%= "予定合計#{Task.count}件"%>
-      <%= "本日の日付#{Date.today}"%>
+  <div class="bg-white p-2 mt-5 d-flex justify-content-between">
+      <p class="fw-bold fs-3"><%= "予定合計#{Task.count}件"%></p>
+      <p class="fw-bold fs-3 opacity-25"><%= "本日の日付#{Date.today}"%></p>
   </div>
 </div>

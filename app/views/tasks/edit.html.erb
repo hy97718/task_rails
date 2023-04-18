@@ -1,46 +1,12 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
+
 <div class="p-3 bg-light text-dark">
+  <h3 class="mt-2 mx-auto w-50">予定の編集</h3>
   <div class ="text-center text-danger fs-5 fw-bold" > 
     <% if flash[:failure]%>
       <p><%= flash[:failure]%></p>
       <% end%>  
   </div>    
-    
-    
-<div class="form_container bg-white m-5 mx-auto p-3 w-50">
-    <h3>予定の編集</h3>
-    <%= form_with model: @task,local: true do | f | %>
-    <div>
-    <%= render "/layouts/error_messages", model: f.object %>
-    </div>
-    
+    <%= render "shared/form" %>
+      
 
-    <div class="form-group">
-        <%= f.label "タイトル" %>
-        <%= f.text_field :title, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-        <%= f.date_field :start_at %>
-        <%= f.date_field :end_at %>
-    </div>
-    <div class="form-group mb-2">
-        <%= f.check_box :is_all_day,{},"true","false"%>
-        <%= f.label "終日の場合はチェックを入れます" %>
-
-    </div>
-    <div class="form-group">
-        <%= f.label "スケジュールメモ" %>
-        <%= f.text_area :memo %>
-    </div>    
-    <div class="d-flex justify-content-end mt-2">
-        <%= f.submit :"保存", class: "btn btn-primary p-2" %>
-        <% end %>
-        
-        <%= link_to "キャンセル", tasks_path, class: "btn btn-secondary ms-2" %>
-    </div>
-    
-    
-</div>   
 </div>
